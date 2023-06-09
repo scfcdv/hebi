@@ -1,11 +1,39 @@
-<h2 class="gd-menu4" id="timer">0</h2><script>
+<h2 class="gd-menu3">経過時間:</h2>
+<h2 class="gd-menu4" id="timer">0</h2>
+<style>
+.gd-menu3 {
+margin:0;
+position: fixed;
+top: 0px;
+left: 20px;}
+.gd-menu4 {
+margin:0;
+position: fixed;
+top: 0px;
+left: 130px;}
+.gd-menu {
+margin:0;
+position: fixed;
+top: 30px;
+left: 20px;}
+.s {
+margin:0;
+position: fixed;
+top: 70px;}
+.g {
+margin:0;
+position: fixed;
+top: 680px;}
+</style>
+<script>
+var d = 0;
 var count = 0;
+if(d === 0){
 var id = setInterval(function(){
 count++;
 document.querySelector('#timer').textContent=count;
 if(count <= 0) clearInterval(id);
-},1000);
-document.write("TIME:"+count)
+},1000);}
 </script>
 <link rel="icon" href="https://taisy0.com/wp-content/uploads/2017/09/th_ss-2017-09-27-20.36.41.jpg">
 <title>ヘビゲーム</title>
@@ -33,8 +61,8 @@ background: orangered;}
 background: dimgray;}
 </style>
 <div id='app'>
-<h2>SCORE: {{ score }} </h2>
-<div id='stage'>
+<h2 class="gd-menu">SCORE: {{ score }} </h2>
+<div id='stage' class="s">
 <div
 class='cell'
 v-for="i in stage_cells_count"
@@ -46,7 +74,7 @@ fruit: fruit_index === i - 1,
 }"
 ></div>
 </div>
-<h1 v-if='is_gameover'>
+<h1 class="g" v-if='is_gameover'>
 GAME OVER<br>
 </h1>
 </div>
@@ -107,6 +135,7 @@ methods: {
 // 時間を進める
 time_goes() {
 if(this.is_gameover) return	// ゲームオーバーしていたらこれ以上ヘビを進めない
+d = 1,
 this.forward_snake()
 setTimeout(this.time_goes, this.snake.speed)},
 forward_snake() {
